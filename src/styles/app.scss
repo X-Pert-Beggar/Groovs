@@ -1,5 +1,6 @@
 @import 'utils/variables';
 @import 'components/type';
+
 body {
     font-family: sans-serif;
     font-size: 16px;
@@ -7,6 +8,10 @@ body {
     color: #000000;
     font-family: 'Poppins', sans-serif;
     margin: 0;
+}
+
+.🕵🏼‍♂️{
+    overflow-x: hidden;
 }
 
 // * {
@@ -200,12 +205,27 @@ ul {
 
 .container__img {
     background-color: #A668F7;
-    background-image: url("guitar-1.jpg");
+    background-image: url("../assets/images/guitar-1.jpg");
     background-repeat: no-repeat, repeat;
     width: 300px;
     height: 300px;
     border-radius: 50px;
     display: flex;
+    background-size: contain;
+}
+
+.slider__btn{
+    position: absolute;
+    top: 150px;
+    transform: translateY(-50%);    
+}
+
+.slider__btn--droite{
+    right: 40px;
+}
+
+.slider__btn--gauche{
+    left: 40px;
 }
 
 .img__title {
@@ -218,10 +238,13 @@ ul {
 }
 
 .container__slider {
+    position: relative;
+}
+
+.container__blocks-img{
     display: flex;
     flex-direction: row;
-    gap: 20px;
-    overflow-x: scroll;
+    gap: 30px;
 }
 
 .section--intro {
@@ -376,6 +399,12 @@ ul {
     .container__img {
         width: 450px;
         height: 450px;
+    }
+    .container__blocks-img {
+        gap: 60px;
+    }
+    .slider__btn{
+        top: 225px;
     }
     .container__slider {
         gap: 60px;
