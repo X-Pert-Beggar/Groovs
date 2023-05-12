@@ -18,6 +18,8 @@ const burgerNav = document.querySelector('.burger__page');
 const burgerBtn = document.querySelector('.iconburger');
 const burgerExitBtn = document.querySelector('.burger__return');
 
+const from = document.querySelector('#form')
+
 
 function burgerClick() {
     gsap.to(".burger__page", { left: "0%" });
@@ -29,11 +31,10 @@ function burgerExit() {
     console.log('exit')
 }
 
-
-burgerBtn.addEventListener("click", burgerClick);
-burgerExitBtn.addEventListener("click", burgerExit);
-
-
+if (burgerBtn) {
+    burgerBtn.addEventListener("click", burgerClick);
+    burgerExitBtn.addEventListener("click", burgerExit);
+}
 
 
 if (btAudita) {
@@ -74,29 +75,32 @@ if (btAuditc) {
 };
 
 
+if (btSliderNext){
+    let offsetSlider = 0
 
-let offsetSlider = 0
-
-btSliderNext.addEventListener("click", () => {
-    if (Math.abs(offsetSlider) < Math.abs(quantiteImg * setItemSize() - setItemSize() * 2) && setItemSize() == 510) {
-        offsetSlider -= setItemSize()
-        gsap.to(".container__blocks-img", { x: offsetSlider, duration: 0.3 })
-    }
-
-    if (setItemSize() == 330) {
-        if (Math.abs(offsetSlider) < Math.abs(quantiteImg * setItemSize() - setItemSize())) {
+    btSliderNext.addEventListener("click", () => {
+        if (Math.abs(offsetSlider) < Math.abs(quantiteImg * setItemSize() - setItemSize() * 2) && setItemSize() == 510) {
             offsetSlider -= setItemSize()
             gsap.to(".container__blocks-img", { x: offsetSlider, duration: 0.3 })
         }
-    }
-})
+    
+        if (setItemSize() == 330) {
+            if (Math.abs(offsetSlider) < Math.abs(quantiteImg * setItemSize() - setItemSize())) {
+                offsetSlider -= setItemSize()
+                gsap.to(".container__blocks-img", { x: offsetSlider, duration: 0.3 })
+            }
+        }
+    })
+    
+    btSliderPrev.addEventListener("click", () => {
+        if (offsetSlider != 0) {
+            offsetSlider += setItemSize()
+            gsap.to(".container__blocks-img", { x: offsetSlider, duration: 0.3 })
+        }
+    })
+}
 
-btSliderPrev.addEventListener("click", () => {
-    if (offsetSlider != 0) {
-        offsetSlider += setItemSize()
-        gsap.to(".container__blocks-img", { x: offsetSlider, duration: 0.3 })
-    }
-})
+
 
 function setItemSize() {
     let imgWidth = document.querySelectorAll('.block__img')[0].clientWidth;
@@ -109,4 +113,22 @@ function setItemSize() {
     }
     let itemWidth = imgWidth + imgGap
     return itemWidth
+}
+
+if (form) {
+    const inputs = document.querySelectorAll('.formulaire__imput')
+    const input1 = document.querySelector('#form_1')
+    const input2 = document.querySelector('#form_2')
+    const btnToggleDisabled = document.querySelector('#btnToggle')
+
+    for (let input of inputs){
+        input.addEventListener("input", (e) => {
+            if(input1.value.length > 0 && input2.value.length > 0){
+                btnToggleDisabled.classList.remove('disabled')
+            }
+            else{
+                btnToggleDisabled.classList.add('disabled')
+            }
+        })
+    }
 }

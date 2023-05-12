@@ -468,6 +468,7 @@ ul {
 .disabled {
     background: #F9F9F9;
     color: #BBBBBB;
+    pointer-events: none;
 }
 
 .circle__profil {
